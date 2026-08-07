@@ -21,10 +21,8 @@ html{scroll-behavior:smooth;}
 body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--ink);overflow-x:hidden;}
 body::after{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");pointer-events:none;z-index:9999;}
 
-/* VIEWS */
 .view{display:none;} .view.active{display:block;}
 
-/* ── NAV ── */
 nav{position:sticky;top:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:0 48px;height:68px;background:rgba(245,240,232,0.95);backdrop-filter:blur(24px);border-bottom:1px solid var(--border);}
 .nav-logo{display:flex;align-items:center;gap:10px;cursor:pointer;text-decoration:none;}
 .nav-logo-box{width:34px;height:34px;background:var(--ink);border-radius:2px;display:flex;align-items:center;justify-content:center;}
@@ -37,7 +35,6 @@ nav{position:sticky;top:0;z-index:200;display:flex;align-items:center;justify-co
 .nav-cta:hover{background:var(--gold);}
 @media(max-width:640px){nav{padding:0 20px;} .nav-cta{display:none;}}
 
-/* ── BACK / PROGRESS ── */
 .back-btn{display:inline-flex;align-items:center;gap:8px;padding:10px 0;font-size:13px;font-weight:500;color:var(--muted);cursor:pointer;border:none;background:none;letter-spacing:.04em;margin-bottom:20px;transition:color .2s;}
 .back-btn:hover{color:var(--ink);}
 .prog-wrap{display:flex;align-items:center;gap:6px;margin-bottom:28px;}
@@ -45,27 +42,18 @@ nav{position:sticky;top:0;z-index:200;display:flex;align-items:center;justify-co
 .prog-dot.active{background:var(--ink);}
 .prog-dot.done{background:var(--gold);}
 
-/* ═══════════════════════════════
-   VIEW 1 — HOME
-═══════════════════════════════ */
-
-/* SPLIT HERO */
 .hero{display:grid;grid-template-columns:1fr 1fr;min-height:calc(100vh - 68px);overflow:hidden;}
 @media(max-width:900px){.hero{grid-template-columns:1fr;}}
-
 .hero-left{display:flex;flex-direction:column;justify-content:center;padding:72px 56px 72px 72px;position:relative;}
 @media(max-width:900px){.hero-left{padding:48px 24px;}}
 @media(max-width:640px){.hero-left{padding:36px 20px;}}
-
 .hero-eyebrow{display:flex;align-items:center;gap:12px;margin-bottom:28px;animation:fadeUp .7s ease both;}
 .ey-line{width:32px;height:1px;background:var(--gold);}
 .ey-text{font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);}
-
 .hero-h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(64px,8vw,100px);line-height:.9;letter-spacing:.02em;color:var(--ink);margin-bottom:10px;animation:fadeUp .7s .08s ease both;}
 .hero-h1-em{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:300;color:var(--gold);display:block;font-size:clamp(46px,6vw,72px);line-height:1.05;animation:fadeUp .7s .14s ease both;}
 .hero-sub{font-size:16px;font-weight:300;color:var(--muted);line-height:1.75;max-width:440px;margin:24px 0 40px;animation:fadeUp .7s .2s ease both;}
 
-/* VIN BOX */
 .vin-box{background:var(--white);border:1.5px solid var(--ink);border-radius:3px;overflow:hidden;margin-bottom:10px;transition:box-shadow .3s,border-color .3s;animation:fadeUp .7s .26s ease both;}
 .vin-box:focus-within{box-shadow:0 0 0 3px rgba(184,149,42,.18);border-color:var(--gold);}
 .vin-box.v-valid{border-color:var(--green);}
@@ -77,25 +65,20 @@ nav{position:sticky;top:0;z-index:200;display:flex;align-items:center;justify-co
 .vin-hint-toggle{font-size:12px;color:var(--muted);text-decoration:underline;text-decoration-style:dotted;cursor:pointer;margin-bottom:6px;display:inline-block;}
 .vin-hint-box{font-size:12px;color:var(--muted);padding:10px 14px;background:var(--cream2);border-radius:2px;margin-bottom:16px;display:none;}
 .vin-hint-box.show{display:block;}
-
 .search-btn{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;padding:18px;background:var(--ink);color:var(--cream);border:none;border-radius:2px;font-family:'Bebas Neue',sans-serif;font-size:21px;letter-spacing:.1em;cursor:pointer;transition:background .2s;animation:fadeUp .7s .32s ease both;}
 .search-btn:hover{background:var(--gold);}
 .search-btn:disabled{background:var(--dim);cursor:not-allowed;}
 .spin{width:18px;height:18px;border:2px solid rgba(255,255,255,.3);border-top-color:#fff;border-radius:50%;animation:spin 1s linear infinite;display:none;flex-shrink:0;}
 .spin.show{display:block;}
-
 .vin-meta{display:flex;align-items:center;gap:12px;margin-top:14px;flex-wrap:wrap;animation:fadeUp .7s .36s ease both;}
 .vin-meta-price{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:600;color:var(--ink);}
 .vin-meta-label{font-size:12px;color:var(--muted);}
 .vin-tag{font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:4px 10px;border:1px solid var(--dim);border-radius:2px;color:var(--muted);}
 
-/* HERO RIGHT */
 .hero-right{background:var(--ink);position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;padding:48px 40px;}
 @media(max-width:900px){.hero-right{display:none;}}
 .hr-bg{position:absolute;inset:0;background:radial-gradient(ellipse at 30% 50%,rgba(184,149,42,.1) 0%,transparent 60%),radial-gradient(ellipse at 80% 20%,rgba(184,149,42,.05) 0%,transparent 50%);}
 .hr-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);background-size:44px 44px;}
-
-/* PREVIEW CARD */
 .preview-card{position:relative;z-index:2;width:300px;animation:fadeUp .9s .3s ease both;}
 .pc-inner{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:4px;padding:28px;}
 .pc-vin{font-family:'DM Mono',monospace;font-size:12px;letter-spacing:.12em;color:var(--gold2);margin-bottom:18px;padding-bottom:14px;border-bottom:1px solid rgba(255,255,255,.07);}
@@ -116,7 +99,6 @@ nav{position:sticky;top:0;z-index:200;display:flex;align-items:center;justify-co
 .pc-brand{font-family:'Bebas Neue',sans-serif;font-size:15px;letter-spacing:.14em;color:var(--gold2);}
 .pc-date{font-size:10px;color:rgba(255,255,255,.2);font-family:'DM Mono',monospace;}
 
-/* NUMBERS BAR */
 .numbers-bar{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
 @media(max-width:640px){.numbers-bar{grid-template-columns:1fr 1fr;}}
 .nb-item{padding:36px 32px;border-right:1px solid var(--border);transition:background .2s;}
@@ -126,7 +108,6 @@ nav{position:sticky;top:0;z-index:200;display:flex;align-items:center;justify-co
 .nb-val span{color:var(--gold);}
 .nb-label{font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);}
 
-/* FEATURES GRID */
 .feats-section{padding:80px 72px;}
 @media(max-width:640px){.feats-section{padding:48px 20px;}}
 .sec-eyebrow{display:flex;align-items:center;gap:10px;margin-bottom:16px;}
@@ -145,7 +126,6 @@ nav{position:sticky;top:0;z-index:200;display:flex;align-items:center;justify-co
 .feat-title{font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:.05em;margin-bottom:10px;}
 .feat-desc{font-size:13px;font-weight:300;color:var(--muted);line-height:1.6;}
 
-/* WHY SECTION — dark */
 .why-section{background:var(--ink);padding:80px 72px;}
 @media(max-width:640px){.why-section{padding:48px 20px;}}
 .why-section .s-line{background:var(--gold);}
@@ -158,7 +138,6 @@ nav{position:sticky;top:0;z-index:200;display:flex;align-items:center;justify-co
 .why-text{font-size:14px;font-weight:300;color:rgba(255,255,255,.55);line-height:1.65;}
 .why-text strong{color:white;font-weight:600;}
 
-/* SITE FOOTER */
 .site-footer{border-top:1px solid var(--border);padding:28px 72px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;}
 @media(max-width:640px){.site-footer{padding:24px 20px;flex-direction:column;text-align:center;}}
 .footer-brand{font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:.14em;}
@@ -168,31 +147,24 @@ nav{position:sticky;top:0;z-index:200;display:flex;align-items:center;justify-co
 .footer-links a{font-size:11px;color:var(--muted);text-decoration:none;letter-spacing:.06em;transition:color .2s;}
 .footer-links a:hover{color:var(--ink);}
 
-/* ═══════════════════════════════
-   VIEW 2 — RESULTS
-═══════════════════════════════ */
 .page-wrap{padding:32px 72px;max-width:1100px;margin:0 auto;}
 @media(max-width:900px){.page-wrap{padding:24px 32px;}}
 @media(max-width:640px){.page-wrap{padding:16px 20px;}}
-
 .vehicle-banner{background:var(--ink);color:var(--cream);padding:22px 28px;border-radius:2px;margin-bottom:32px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;}
 .vb-name{font-family:'Bebas Neue',sans-serif;font-size:26px;letter-spacing:.08em;}
 .vb-vin{font-family:'DM Mono',monospace;font-size:12px;color:var(--gold2);margin-top:3px;letter-spacing:.1em;}
 .vb-badge{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:600;color:#22C55E;background:rgba(34,197,94,.1);padding:6px 14px;border-radius:20px;border:1px solid rgba(34,197,94,.2);}
-
 .results-layout{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);border:1px solid var(--border);margin-bottom:32px;}
 @media(max-width:700px){.results-layout{grid-template-columns:1fr;}}
 .info-cell{background:var(--white);padding:16px 20px;}
 .info-label{font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:5px;}
 .info-val{font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:.04em;color:var(--ink);}
-
 .recall-banner{padding:14px 18px;border-radius:2px;margin-bottom:12px;font-size:14px;font-weight:600;display:flex;align-items:center;gap:8px;}
 .rb-warn{background:var(--orangebg);color:var(--orange);border:1px solid rgba(196,123,32,.2);}
 .rb-ok{background:var(--greenbg);color:var(--green);border:1px solid rgba(26,107,60,.2);}
 .recall-card{background:var(--white);border:1px solid var(--border);border-left:3px solid var(--orange);padding:16px 18px;margin-bottom:8px;}
 .recall-comp{font-size:13px;font-weight:600;margin-bottom:4px;}
 .recall-sum{font-size:12px;font-weight:300;color:var(--muted);line-height:1.5;}
-
 .tech-table{width:100%;border-collapse:collapse;background:var(--white);border:1px solid var(--border);}
 .tech-table tr{border-bottom:1px solid var(--border);}
 .tech-table tr:last-child{border-bottom:none;}
@@ -200,7 +172,6 @@ nav{position:sticky;top:0;z-index:200;display:flex;align-items:center;justify-co
 .tech-table td:first-child{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);width:45%;}
 .tech-table td:last-child{font-family:'DM Mono',monospace;font-weight:500;}
 .tech-note{font-size:11px;font-style:italic;color:var(--muted);margin-top:8px;line-height:1.5;}
-
 .checklist-wrap{background:var(--white);border:1px solid var(--border);}
 .ck-item{display:flex;align-items:flex-start;gap:14px;padding:15px 18px;border-bottom:1px solid var(--border);cursor:pointer;transition:background .15s;}
 .ck-item:last-child{border-bottom:none;}
@@ -213,8 +184,6 @@ nav{position:sticky;top:0;z-index:200;display:flex;align-items:center;justify-co
 .ck-prog-label{font-size:12px;font-weight:600;color:var(--muted);margin-bottom:6px;}
 .ck-prog-bar{height:4px;background:var(--dim);border-radius:2px;overflow:hidden;}
 .ck-prog-fill{height:100%;border-radius:2px;transition:width .35s,background .35s;}
-
-/* UPSELL */
 .upsell{background:var(--ink);padding:48px 40px;border-radius:2px;margin-top:40px;text-align:center;}
 .upsell-h{font-family:'Bebas Neue',sans-serif;font-size:36px;letter-spacing:.04em;color:white;margin-bottom:8px;}
 .upsell-h em{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:300;color:var(--gold2);display:block;font-size:24px;letter-spacing:.02em;}
@@ -226,9 +195,6 @@ nav{position:sticky;top:0;z-index:200;display:flex;align-items:center;justify-co
 .upsell-btn:hover{background:var(--gold2);}
 .upsell-sm{font-size:12px;font-weight:300;color:rgba(255,255,255,.35);margin-top:10px;}
 
-/* ═══════════════════════════════
-   VIEW 3 — PAYMENT
-═══════════════════════════════ */
 .pay-title{font-family:'Bebas Neue',sans-serif;font-size:40px;letter-spacing:.04em;margin-bottom:28px;}
 .pay-card{border:1.5px solid var(--border);border-radius:3px;padding:28px;margin-bottom:16px;background:var(--white);}
 .pay-card.featured{border-color:var(--ink);}
@@ -255,17 +221,12 @@ nav{position:sticky;top:0;z-index:200;display:flex;align-items:center;justify-co
 .mc-success-text{font-size:13px;font-weight:300;color:var(--muted);line-height:1.65;}
 .wa-btn{display:flex;align-items:center;justify-content:center;gap:8px;padding:14px;background:#25D366;color:white;border:none;border-radius:2px;font-size:14px;font-weight:600;cursor:pointer;margin-top:14px;width:100%;text-decoration:none;}
 
-/* ═══════════════════════════════
-   VIEW 4 — REPORT
-═══════════════════════════════ */
 .report-hdr{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:28px;flex-wrap:wrap;gap:14px;}
 .report-title-main{font-family:'Bebas Neue',sans-serif;font-size:32px;letter-spacing:.06em;}
 .report-sub{font-size:12px;font-weight:300;color:var(--muted);margin-top:4px;}
 .report-id-txt{font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);margin-top:3px;}
 .print-btn{padding:10px 22px;background:var(--cream2);color:var(--ink);border:1px solid var(--border);border-radius:2px;font-size:12px;font-weight:600;letter-spacing:.06em;cursor:pointer;white-space:nowrap;transition:background .2s;}
 .print-btn:hover{background:var(--ink);color:var(--cream);}
-
-/* STATUS BANNER */
 .status-ban{padding:20px 24px;border-radius:2px;margin-bottom:28px;text-align:center;}
 .status-ban.danger{background:var(--redbg);border:2px solid rgba(192,57,43,.25);}
 .status-ban.good{background:var(--greenbg);border:2px solid rgba(26,107,60,.25);}
@@ -273,29 +234,21 @@ nav{position:sticky;top:0;z-index:200;display:flex;align-items:center;justify-co
 .status-title{font-family:'Bebas Neue',sans-serif;font-size:24px;letter-spacing:.04em;}
 .status-ban.danger .status-title{color:var(--red);}
 .status-ban.good .status-title{color:var(--green);}
-
-/* SCORE */
 .score-row{background:var(--white);border:1px solid var(--border);padding:24px;display:flex;align-items:center;gap:20px;margin-bottom:28px;}
 .score-circle{width:70px;height:70px;border-radius:50%;border:3px solid var(--green);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
 .score-num{font-family:'Bebas Neue',sans-serif;font-size:26px;}
 .score-info-label{font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:4px;}
 .score-verdict-txt{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:.04em;}
 .score-desc-txt{font-size:13px;font-weight:300;color:var(--muted);margin-top:4px;line-height:1.5;}
-
-/* FACTS */
 .facts-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);border:1px solid var(--border);margin-bottom:24px;}
 @media(max-width:700px){.facts-grid{grid-template-columns:1fr 1fr;}}
 .fact-cell{background:var(--white);padding:16px 18px;}
 .fact-label{font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:6px;}
 .fact-val{font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:.04em;}
 .fv-r{color:var(--red);} .fv-g{color:var(--green);} .fv-o{color:var(--orange);}
-
-/* FLOOD */
 .flood-box{background:var(--redbg);border:1.5px solid rgba(192,57,43,.25);border-radius:2px;padding:24px;margin-bottom:20px;}
 .flood-title{font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:.06em;color:var(--red);margin-bottom:8px;}
 .flood-text{font-size:13px;font-weight:300;color:#7B2D26;line-height:1.7;}
-
-/* VERDICT */
 .verdict-box{padding:24px;border-radius:2px;margin-bottom:20px;}
 .verdict-box.vb-r{background:var(--redbg);border:2px solid rgba(192,57,43,.2);}
 .verdict-box.vb-g{background:var(--greenbg);border:2px solid rgba(26,107,60,.2);}
@@ -303,45 +256,32 @@ nav{position:sticky;top:0;z-index:200;display:flex;align-items:center;justify-co
 .verdict-title{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:.04em;margin-bottom:8px;}
 .vb-r .verdict-title{color:var(--red);} .vb-g .verdict-title{color:var(--green);} .vb-o .verdict-title{color:var(--orange);}
 .verdict-text{font-size:13px;font-weight:300;color:var(--muted);line-height:1.65;}
-
-/* NEGO */
 .nego-box{background:var(--ink);padding:24px;border-radius:2px;margin-bottom:28px;}
 .nego-title{font-family:'Bebas Neue',sans-serif;font-size:16px;letter-spacing:.08em;color:var(--gold2);margin-bottom:8px;}
 .nego-text{font-size:13px;font-weight:300;color:rgba(255,255,255,.65);line-height:1.7;}
-
 .disclaimer{font-size:11px;font-weight:300;color:var(--dim);line-height:1.75;margin-top:36px;padding-top:20px;border-top:1px solid var(--border);}
 .report-footer-bar{text-align:center;padding:20px 0;font-family:'DM Mono',monospace;font-size:11px;color:var(--dim);}
-
-/* LOADING / ERROR */
 .loading-state{text-align:center;padding:64px 32px;}
 .loading-ring{width:48px;height:48px;border:2px solid var(--dim);border-top-color:var(--ink);border-radius:50%;animation:spin 1s linear infinite;margin:0 auto 16px;}
 .loading-text{font-size:14px;font-weight:300;color:var(--muted);}
 .error-ban{background:var(--redbg);border:1px solid rgba(192,57,43,.2);border-radius:2px;padding:16px 20px;margin-bottom:20px;}
 .error-ban-text{font-size:14px;color:var(--red);font-weight:500;}
-
-/* SECTION LABEL */
 .sec-lbl{display:flex;align-items:center;gap:10px;margin:28px 0 14px;}
 .sec-lbl-line{width:22px;height:1px;background:var(--gold);}
 .sec-lbl-text{font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);}
-
-/* ANIMATIONS */
 @keyframes fadeUp{from{opacity:0;transform:translateY(22px);}to{opacity:1;transform:translateY(0);}}
 @keyframes spin{to{transform:rotate(360deg);}}
 .reveal{opacity:0;transform:translateY(28px);transition:opacity .75s ease,transform .75s ease;}
 .reveal.visible{opacity:1;transform:translateY(0);}
-
-/* PRINT */
 @media print{
-  nav,.back-btn,.prog-wrap,.print-btn,.upsell,.wa-btn,.nav-cta{display:none!important;}
-  .view{display:block!important;}
-  #view-home,#view-results,#view-payment{display:none!important;}
-  body::after{display:none;}
+nav,.back-btn,.prog-wrap,.print-btn,.upsell,.wa-btn,.nav-cta{display:none!important;}
+.view{display:block!important;}
+#view-home,#view-results,#view-payment{display:none!important;}
+body::after{display:none;}
 }
 </style>
 </head>
 <body>
-
-<!-- NAV -->
 <nav>
   <a class="nav-logo" onclick="goHome()">
     <div class="nav-logo-box">
@@ -356,10 +296,7 @@ nav{position:sticky;top:0;z-index:200;display:flex;align-items:center;justify-co
   </div>
 </nav>
 
-<!-- ══════════════ VIEW 1 — HOME ══════════════ -->
 <div id="view-home" class="view active">
-
-  <!-- SPLIT HERO -->
   <section class="hero">
     <div class="hero-left">
       <div class="hero-eyebrow">
@@ -367,17 +304,14 @@ nav{position:sticky;top:0;z-index:200;display:flex;align-items:center;justify-co
         <span class="ey-text" data-kr="Sèvis #1 pou diaspora ayisyèn" data-en="The #1 service for the Haitian diaspora">Sèvis #1 pou diaspora ayisyèn</span>
         <div class="ey-line"></div>
       </div>
-
       <h1 class="hero-h1">
         <span data-kr="KONNEN ISTWA" data-en="KNOW THE HISTORY">KONNEN ISTWA</span><br>
         <span data-kr="MACHIN OU" data-en="OF YOUR VEHICLE">MACHIN OU</span>
       </h1>
       <span class="hero-h1-em" data-kr="anvan ou achte" data-en="before you buy">anvan ou achte</span>
-
       <p class="hero-sub" data-kr="Antre nimewo VIN an — jwenn dekòday, rapèl fabrikant, fich teknik, ak istwa konplè pou pwoteje ou anvan yon gwo acha." data-en="Enter the VIN number — get decoding, manufacturer recalls, tech specs, and full history to protect yourself before a major purchase.">
         Antre nimewo VIN an — jwenn dekòday, rapèl fabrikant, fich teknik, ak istwa konplè pou pwoteje ou anvan yon gwo acha.
       </p>
-
       <div id="vin-box" class="vin-box">
         <input id="vin-input" class="vin-input" type="text" maxlength="17"
           placeholder="Antre VIN (17 karaktè)"
@@ -389,17 +323,14 @@ nav{position:sticky;top:0;z-index:200;display:flex;align-items:center;justify-co
           onkeydown="if(event.key==='Enter')doSearch()">
       </div>
       <div class="vin-error-msg" id="vin-err"></div>
-
       <span class="vin-hint-toggle" onclick="toggleHint()" data-kr="Kote pou jwenn VIN an? ↓" data-en="Where to find the VIN? ↓">Kote pou jwenn VIN an? ↓</span>
       <div class="vin-hint-box" id="vin-hint" data-kr="Tableau de bò chofè • Ankadreman pòt devan • Kat gri machin nan" data-en="Driver's side dashboard • Door jamb • Vehicle title document">
         Tableau de bò chofè • Ankadreman pòt devan • Kat gri machin nan
       </div>
-
       <button class="search-btn" id="search-btn" onclick="doSearch()">
         <div class="spin" id="spinner"></div>
         <span id="search-label" data-kr="TCHEKE MACHIN NAN" data-en="CHECK THIS VEHICLE">TCHEKE MACHIN NAN</span>
       </button>
-
       <div class="vin-meta">
         <span class="vin-meta-label" data-kr="Rapò konplè —" data-en="Full report —">Rapò konplè —</span>
         <span class="vin-meta-price">$14.99</span>
@@ -407,8 +338,6 @@ nav{position:sticky;top:0;z-index:200;display:flex;align-items:center;justify-co
         <span class="vin-tag" data-kr="Gratis: VIN + Rapèl" data-en="Free: VIN + Recalls">Gratis: VIN + Rapèl</span>
       </div>
     </div>
-
-    <!-- RIGHT — PREVIEW CARD -->
     <div class="hero-right">
       <div class="hr-bg"></div>
       <div class="hr-grid"></div>
@@ -440,7 +369,6 @@ nav{position:sticky;top:0;z-index:200;display:flex;align-items:center;justify-co
     </div>
   </section>
 
-  <!-- NUMBERS -->
   <div class="numbers-bar reveal">
     <div class="nb-item"><div class="nb-val">30<span>B+</span></div><div class="nb-label" data-kr="Dosye Machin" data-en="Vehicle Records">Dosye Machin</div></div>
     <div class="nb-item"><div class="nb-val"><span>~</span>5</div><div class="nb-label" data-kr="Minit pou Rapò" data-en="Minutes per Report">Minit pou Rapò</div></div>
@@ -448,71 +376,27 @@ nav{position:sticky;top:0;z-index:200;display:flex;align-items:center;justify-co
     <div class="nb-item"><div class="nb-val">24<span>/7</span></div><div class="nb-label" data-kr="Disponib Toutan" data-en="Always Available">Disponib Toutan</div></div>
   </div>
 
-  <!-- FEATURES -->
   <section class="feats-section reveal">
     <div class="sec-eyebrow"><div class="s-line"></div><span class="s-tag" data-kr="Sèvis Nou Yo" data-en="Our Services">Sèvis Nou Yo</span></div>
     <div class="sec-title"><span data-kr="SA OU" data-en="WHAT YOU">SA OU</span><br><em data-kr="jwenn ak Kapvoum" data-en="get with Kapvoum">jwenn ak Kapvoum</em></div>
     <div class="feats-grid">
-      <div class="feat-card">
-        <span class="feat-badge fb-free" data-kr="GRATIS" data-en="FREE">GRATIS</span>
-        <span class="feat-icon">🔍</span>
-        <div class="feat-title" data-kr="Dekoday VIN" data-en="VIN Decode">Dekoday VIN</div>
-        <div class="feat-desc" data-kr="Mak, modèl, ane, motè, transmisyon, peyi fabrikasyon. Done ofisyèl NHTSA." data-en="Make, model, year, engine, transmission, country of manufacture. Official NHTSA data.">Mak, modèl, ane, motè, transmisyon, peyi fabrikasyon. Done ofisyèl NHTSA.</div>
-      </div>
-      <div class="feat-card">
-        <span class="feat-badge fb-free" data-kr="GRATIS" data-en="FREE">GRATIS</span>
-        <span class="feat-icon">⚠️</span>
-        <div class="feat-title" data-kr="Rapèl Fabrikant" data-en="Manufacturer Recalls">Rapèl Fabrikant</div>
-        <div class="feat-desc" data-kr="Rapèl aktif sou machin sa espesyalman. Enpòtan pou sekirite ou." data-en="Active recalls specific to this vehicle. Critical for your safety.">Rapèl aktif sou machin sa espesyalman. Enpòtan pou sekirite ou.</div>
-      </div>
-      <div class="feat-card">
-        <span class="feat-badge fb-free" data-kr="GRATIS" data-en="FREE">GRATIS</span>
-        <span class="feat-icon">🔧</span>
-        <div class="feat-title" data-kr="Fich Teknik" data-en="Tech Sheet">Fich Teknik</div>
-        <div class="feat-desc" data-kr="Lwil motè, batri, gaz AC, presyon pneu — done pou mekanisyen ak pwopriyetè." data-en="Engine oil, battery, AC gas, tire pressure — data for mechanics and owners.">Lwil motè, batri, gaz AC, presyon pneu — done pou mekanisyen ak pwopriyetè.</div>
-      </div>
-      <div class="feat-card">
-        <span class="feat-badge fb-free" data-kr="GRATIS" data-en="FREE">GRATIS</span>
-        <span class="feat-icon">✅</span>
-        <div class="feat-title" data-kr="Lis Verifikasyon Ayiti" data-en="Haiti Buying Checklist">Lis Verifikasyon Ayiti</div>
-        <div class="feat-desc" data-kr="Checklist adapte ak reyalite Ayiti — wout, chalè, imidite, disponiblite pati." data-en="Checklist adapted to Haiti's reality — roads, heat, humidity, parts availability.">Checklist adapte ak reyalite Ayiti — wout, chalè, imidite, disponiblite pati.</div>
-      </div>
-      <div class="feat-card">
-        <span class="feat-badge fb-paid">$14.99</span>
-        <span class="feat-icon">📋</span>
-        <div class="feat-title" data-kr="Istwa Konplè" data-en="Full History">Istwa Konplè</div>
-        <div class="feat-desc" data-kr="Tit, aksidan, flood damage, odometè, pwopriyetè — ak Score Kapvoum ak konsèy negosyasyon." data-en="Title, accidents, flood damage, odometer, owners — with Kapvoum Score and negotiation advice.">Tit, aksidan, flood damage, odometè, pwopriyetè — ak Score Kapvoum ak konsèy negosyasyon.</div>
-      </div>
-      <div class="feat-card">
-        <span class="feat-badge fb-paid" style="background:rgba(184,149,42,.1);color:var(--gold);border-color:rgba(184,149,42,.2);" data-kr="INIK" data-en="UNIQUE">INIK</span>
-        <span class="feat-icon">🏆</span>
-        <div class="feat-title" data-kr="Score Kapvoum" data-en="Kapvoum Score">Score Kapvoum</div>
-        <div class="feat-desc" data-kr="Evalyasyon /10 adapte pou mache ayisyen. Wout, chalè, ak disponiblite pati konsidere." data-en="Score out of 10 adapted for the Haitian market. Roads, climate, and parts availability considered.">Evalyasyon /10 adapte pou mache ayisyen. Wout, chalè, ak disponiblite pati konsidere.</div>
-      </div>
+      <div class="feat-card"><span class="feat-badge fb-free" data-kr="GRATIS" data-en="FREE">GRATIS</span><span class="feat-icon">🔍</span><div class="feat-title" data-kr="Dekoday VIN" data-en="VIN Decode">Dekoday VIN</div><div class="feat-desc" data-kr="Mak, modèl, ane, motè, transmisyon, peyi fabrikasyon. Done ofisyèl NHTSA." data-en="Make, model, year, engine, transmission, country of manufacture. Official NHTSA data.">Mak, modèl, ane, motè, transmisyon, peyi fabrikasyon. Done ofisyèl NHTSA.</div></div>
+      <div class="feat-card"><span class="feat-badge fb-free" data-kr="GRATIS" data-en="FREE">GRATIS</span><span class="feat-icon">⚠️</span><div class="feat-title" data-kr="Rapèl Fabrikant" data-en="Manufacturer Recalls">Rapèl Fabrikant</div><div class="feat-desc" data-kr="Rapèl aktif sou machin sa espesyalman. Enpòtan pou sekirite ou." data-en="Active recalls specific to this vehicle. Critical for your safety.">Rapèl aktif sou machin sa espesyalman. Enpòtan pou sekirite ou.</div></div>
+      <div class="feat-card"><span class="feat-badge fb-free" data-kr="GRATIS" data-en="FREE">GRATIS</span><span class="feat-icon">🔧</span><div class="feat-title" data-kr="Fich Teknik" data-en="Tech Sheet">Fich Teknik</div><div class="feat-desc" data-kr="Lwil motè, batri, gaz AC, presyon pneu — done pou mekanisyen ak pwopriyetè." data-en="Engine oil, battery, AC gas, tire pressure — data for mechanics and owners.">Lwil motè, batri, gaz AC, presyon pneu — done pou mekanisyen ak pwopriyetè.</div></div>
+      <div class="feat-card"><span class="feat-badge fb-free" data-kr="GRATIS" data-en="FREE">GRATIS</span><span class="feat-icon">✅</span><div class="feat-title" data-kr="Lis Verifikasyon Ayiti" data-en="Haiti Buying Checklist">Lis Verifikasyon Ayiti</div><div class="feat-desc" data-kr="Checklist adapte ak reyalite Ayiti — wout, chalè, imidite, disponiblite pati." data-en="Checklist adapted to Haiti's reality — roads, heat, humidity, parts availability.">Checklist adapte ak reyalite Ayiti — wout, chalè, imidite, disponiblite pati.</div></div>
+      <div class="feat-card"><span class="feat-badge fb-paid">$14.99</span><span class="feat-icon">📋</span><div class="feat-title" data-kr="Istwa Konplè" data-en="Full History">Istwa Konplè</div><div class="feat-desc" data-kr="Tit, aksidan, flood damage, odometè, pwopriyetè — ak Score Kapvoum ak konsèy negosyasyon." data-en="Title, accidents, flood damage, odometer, owners — with Kapvoum Score and negotiation advice.">Tit, aksidan, flood damage, odometè, pwopriyetè — ak Score Kapvoum ak konsèy negosyasyon.</div></div>
+      <div class="feat-card"><span class="feat-badge fb-paid" style="background:rgba(184,149,42,.1);color:var(--gold);border-color:rgba(184,149,42,.2);" data-kr="INIK" data-en="UNIQUE">INIK</span><span class="feat-icon">🏆</span><div class="feat-title" data-kr="Score Kapvoum" data-en="Kapvoum Score">Score Kapvoum</div><div class="feat-desc" data-kr="Evalyasyon /10 adapte pou mache ayisyen. Wout, chalè, ak disponiblite pati konsidere." data-en="Score out of 10 adapted for the Haitian market. Roads, climate, and parts availability considered.">Evalyasyon /10 adapte pou mache ayisyen. Wout, chalè, ak disponiblite pati konsidere.</div></div>
     </div>
   </section>
 
-  <!-- WHY -->
   <section class="why-section reveal">
     <div class="sec-eyebrow"><div class="s-line"></div><span class="s-tag" data-kr="Poukisa Kapvoum" data-en="Why Kapvoum">Poukisa Kapvoum</span></div>
     <div class="sec-title"><span data-kr="REYALITE" data-en="THE REALITY">REYALITE</span><br><em data-kr="mache machin ann Ayiti" data-en="of the Haitian car market">mache machin ann Ayiti</em></div>
     <div class="why-items">
-      <div class="why-item">
-        <span class="why-emoji">🌊</span>
-        <div class="why-text"><strong data-kr="Flood Damage:" data-en="Flood Damage:">Flood Damage:</strong> <span data-kr="Anpil machin soti Etazini te koule nan dlo. Dlo kraze sistèm elektrik la nèt — $3,000-$8,000 pou repare." data-en="Many vehicles from the USA have flood damage. Water destroys the electrical system completely — $3,000-$8,000 to repair.">Anpil machin soti Etazini te koule nan dlo. Dlo kraze sistèm elektrik la nèt — $3,000-$8,000 pou repare.</span></div>
-      </div>
-      <div class="why-item">
-        <span class="why-emoji">💥</span>
-        <div class="why-text"><strong data-kr="Aksidan Kache:" data-en="Hidden Accidents:">Aksidan Kache:</strong> <span data-kr="Karòs la ka bèl men chassis ka tòde. Sèlman istwa ofisyèl la di verite a." data-en="The body can look beautiful but the chassis can be bent. Only the official history tells the truth.">Karòs la ka bèl men chassis ka tòde. Sèlman istwa ofisyèl la di verite a.</span></div>
-      </div>
-      <div class="why-item">
-        <span class="why-emoji">📊</span>
-        <div class="why-text"><strong data-kr="Kontè Chanje:" data-en="Modified Odometer:">Kontè Chanje:</strong> <span data-kr="Kontè kilomèt ka chanje fasil. Istwa VIN ofisyèl pa janm manti." data-en="The odometer can easily be modified. The official VIN history never lies.">Kontè kilomèt ka chanje fasil. Istwa VIN ofisyèl pa janm manti.</span></div>
-      </div>
-      <div class="why-item">
-        <span class="why-emoji">🚗</span>
-        <div class="why-text"><strong data-kr="Pati Enpotan:" data-en="Parts Availability:">Pati Enpotan:</strong> <span data-kr="Pati Toyota, Honda, Nissan fasil jwenn ann Ayiti. Lòt mak ka difisil ak chè pou repare." data-en="Toyota, Honda, Nissan parts are easy to find in Haiti. Other brands can be difficult and expensive to repair.">Pati Toyota, Honda, Nissan fasil jwenn ann Ayiti. Lòt mak ka difisil ak chè pou repare.</span></div>
-      </div>
+      <div class="why-item"><span class="why-emoji">🌊</span><div class="why-text"><strong data-kr="Flood Damage:" data-en="Flood Damage:">Flood Damage:</strong> <span data-kr="Anpil machin soti Etazini te koule nan dlo. Dlo kraze sistèm elektrik la nèt — $3,000-$8,000 pou repare." data-en="Many vehicles from the USA have flood damage. Water destroys the electrical system completely — $3,000-$8,000 to repair.">Anpil machin soti Etazini te koule nan dlo. Dlo kraze sistèm elektrik la nèt — $3,000-$8,000 pou repare.</span></div></div>
+      <div class="why-item"><span class="why-emoji">💥</span><div class="why-text"><strong data-kr="Aksidan Kache:" data-en="Hidden Accidents:">Aksidan Kache:</strong> <span data-kr="Karòs la ka bèl men chassis ka tòde. Sèlman istwa ofisyèl la di verite a." data-en="The body can look beautiful but the chassis can be bent. Only the official history tells the truth.">Karòs la ka bèl men chassis ka tòde. Sèlman istwa ofisyèl la di verite a.</span></div></div>
+      <div class="why-item"><span class="why-emoji">📊</span><div class="why-text"><strong data-kr="Kontè Chanje:" data-en="Modified Odometer:">Kontè Chanje:</strong> <span data-kr="Kontè kilomèt ka chanje fasil. Istwa VIN ofisyèl pa janm manti." data-en="The odometer can easily be modified. The official VIN history never lies.">Kontè kilomèt ka chanje fasil. Istwa VIN ofisyèl pa janm manti.</span></div></div>
+      <div class="why-item"><span class="why-emoji">🚗</span><div class="why-text"><strong data-kr="Pati Enpotan:" data-en="Parts Availability:">Pati Enpotan:</strong> <span data-kr="Pati Toyota, Honda, Nissan fasil jwenn ann Ayiti. Lòt mak ka difisil ak chè pou repare." data-en="Toyota, Honda, Nissan parts are easy to find in Haiti. Other brands can be difficult and expensive to repair.">Pati Toyota, Honda, Nissan fasil jwenn ann Ayiti. Lòt mak ka difisil ak chè pou repare.</span></div></div>
     </div>
   </section>
 
@@ -526,51 +410,26 @@ nav{position:sticky;top:0;z-index:200;display:flex;align-items:center;justify-co
   </footer>
 </div>
 
-<!-- ══════════════ VIEW 2 — RESULTS ══════════════ -->
 <div id="view-results" class="view">
   <div class="page-wrap">
     <button class="back-btn" onclick="goHome()">← <span data-kr="Tounen" data-en="Back">Tounen</span></button>
     <div class="prog-wrap"><div class="prog-dot done"></div><div class="prog-dot active"></div><div class="prog-dot"></div></div>
-
-    <div id="r-loading" class="loading-state">
-      <div class="loading-ring"></div>
-      <div class="loading-text" data-kr="Ap verifye VIN nan... tanpri tann" data-en="Verifying VIN... please wait">Ap verifye VIN nan... tanpri tann</div>
-    </div>
+    <div id="r-loading" class="loading-state"><div class="loading-ring"></div><div class="loading-text" data-kr="Ap verifye VIN nan... tanpri tann" data-en="Verifying VIN... please wait">Ap verifye VIN nan... tanpri tann</div></div>
     <div id="r-error" class="error-ban" style="display:none;"><div class="error-ban-text" id="r-error-text"></div></div>
-
     <div id="r-content" style="display:none;">
-      <div class="vehicle-banner">
-        <div><div class="vb-name" id="vb-name">—</div><div class="vb-vin" id="vb-vin">—</div></div>
-        <div class="vb-badge">✓ <span data-kr="VIN Valab" data-en="Valid VIN">VIN Valab</span></div>
-      </div>
-
-      <!-- VEHICLE INFO -->
+      <div class="vehicle-banner"><div><div class="vb-name" id="vb-name">—</div><div class="vb-vin" id="vb-vin">—</div></div><div class="vb-badge">✓ <span data-kr="VIN Valab" data-en="Valid VIN">VIN Valab</span></div></div>
       <div class="sec-lbl"><div class="sec-lbl-line"></div><span class="sec-lbl-text" data-kr="Enfòmasyon Machin" data-en="Vehicle Information">Enfòmasyon Machin</span></div>
       <div class="results-layout" id="info-grid"></div>
-
-      <!-- RECALLS -->
       <div class="sec-lbl"><div class="sec-lbl-line"></div><span class="sec-lbl-text" data-kr="Rapèl Fabrikant" data-en="Manufacturer Recalls">Rapèl Fabrikant</span></div>
       <div id="recalls-sec"></div>
-
-      <!-- TECH -->
       <div class="sec-lbl"><div class="sec-lbl-line"></div><span class="sec-lbl-text" data-kr="Fich Teknik" data-en="Technical Sheet">Fich Teknik</span></div>
       <table class="tech-table" id="tech-tbl"></table>
       <p class="tech-note" id="tech-note-txt"></p>
-
-      <!-- CHECKLIST -->
       <div class="sec-lbl"><div class="sec-lbl-line"></div><span class="sec-lbl-text" data-kr="Lis Verifikasyon Ayiti" data-en="Haiti Buying Checklist">Lis Verifikasyon Ayiti</span></div>
       <div class="checklist-wrap" id="ck-wrap"></div>
-      <div class="ck-progress">
-        <div class="ck-prog-label" id="ck-prog-label">0/8</div>
-        <div class="ck-prog-bar"><div class="ck-prog-fill" id="ck-prog-fill" style="width:0%"></div></div>
-      </div>
-
-      <!-- UPSELL -->
+      <div class="ck-progress"><div class="ck-prog-label" id="ck-prog-label">0/8</div><div class="ck-prog-bar"><div class="ck-prog-fill" id="ck-prog-fill" style="width:0%"></div></div></div>
       <div class="upsell">
-        <div class="upsell-h">
-          <span data-kr="SA OU PA KA WÈ" data-en="WHAT YOU CANNOT SEE">SA OU PA KA WÈ</span>
-          <em data-kr="ak je ou sèlman..." data-en="with the naked eye...">ak je ou sèlman...</em>
-        </div>
+        <div class="upsell-h"><span data-kr="SA OU PA KA WÈ" data-en="WHAT YOU CANNOT SEE">SA OU PA KA WÈ</span><em data-kr="ak je ou sèlman..." data-en="with the naked eye...">ak je ou sèlman...</em></div>
         <div class="upsell-risks">
           <div class="ur"><span style="font-size:20px">🌊</span><div class="ur-text"><strong>Flood Damage</strong> — <span data-kr="dlo kache nan tout sistèm elektrik — ka koute $3,000-$8,000" data-en="water hidden throughout the electrical system — can cost $3,000-$8,000">dlo kache nan tout sistèm elektrik — ka koute $3,000-$8,000</span></div></div>
           <div class="ur"><span style="font-size:20px">💥</span><div class="ur-text"><strong data-kr="Aksidan Grav" data-en="Serious Accident">Aksidan Grav</strong> — <span data-kr="chassis tòde menm si karòs la bèl" data-en="bent chassis even if the body looks beautiful">chassis tòde menm si karòs la bèl</span></div></div>
@@ -583,156 +442,55 @@ nav{position:sticky;top:0;z-index:200;display:flex;align-items:center;justify-co
   </div>
 </div>
 
-<!-- ══════════════ VIEW 3 — PAYMENT ══════════════ -->
 <div id="view-payment" class="view">
   <div class="page-wrap" style="max-width:640px;">
     <button class="back-btn" onclick="showView('view-results')">← <span data-kr="Tounen" data-en="Back">Tounen</span></button>
     <div class="prog-wrap"><div class="prog-dot done"></div><div class="prog-dot done"></div><div class="prog-dot active"></div></div>
-
-    <div class="vehicle-banner" style="margin-bottom:28px;">
-      <div><div class="vb-name" id="pay-vname">—</div><div class="vb-vin" id="pay-vvin">—</div></div>
-      <div style="text-align:right;">
-        <div style="font-family:'Bebas Neue',sans-serif;font-size:30px;color:var(--gold2);">$14.99</div>
-        <div style="font-size:11px;color:rgba(255,255,255,.4);" data-kr="Rapò Istwa Konplè" data-en="Full History Report">Rapò Istwa Konplè</div>
-      </div>
-    </div>
-
+    <div class="vehicle-banner" style="margin-bottom:28px;"><div><div class="vb-name" id="pay-vname">—</div><div class="vb-vin" id="pay-vvin">—</div></div><div style="text-align:right;"><div style="font-family:'Bebas Neue',sans-serif;font-size:30px;color:var(--gold2);">$14.99</div><div style="font-size:11px;color:rgba(255,255,255,.4);" data-kr="Rapò Istwa Konplè" data-en="Full History Report">Rapò Istwa Konplè</div></div></div>
     <div class="pay-title" data-kr="CHWAZI FASON POU PEYE" data-en="CHOOSE HOW TO PAY">CHWAZI FASON POU PEYE</div>
-
-    <!-- STRIPE -->
-    <div class="pay-card">
-      <div class="pay-card-hdr">
-        <div class="pay-card-label">💳 <span data-kr="Kat Kredi/Debi — Entènasyonal" data-en="Credit/Debit Card — International">Kat Kredi/Debi — Entènasyonal</span></div>
-        <div class="pay-badge">USA · Canada · Europe</div>
-      </div>
-      <div class="stripe-note" data-kr="Stripe ap konekte talè. Kounye a itilize MonCash oswa kontakte nou." data-en="Stripe coming soon. Use MonCash or contact us for now.">Stripe ap konekte talè. Kounye a itilize MonCash oswa kontakte nou.</div>
-      <button class="stripe-btn-dis" disabled data-kr="Stripe — Byento Disponib" data-en="Stripe — Coming Soon">Stripe — Byento Disponib</button>
-    </div>
-
-    <!-- MONCASH -->
+    <div class="pay-card"><div class="pay-card-hdr"><div class="pay-card-label">💳 <span data-kr="Kat Kredi/Debi — Entènasyonal" data-en="Credit/Debit Card — International">Kat Kredi/Debi — Entènasyonal</span></div><div class="pay-badge">USA · Canada · Europe</div></div><div class="stripe-note" data-kr="Stripe ap konekte talè. Kounye a itilize MonCash oswa kontakte nou." data-en="Stripe coming soon. Use MonCash or contact us for now.">Stripe ap konekte talè. Kounye a itilize MonCash oswa kontakte nou.</div><button class="stripe-btn-dis" disabled data-kr="Stripe — Byento Disponib" data-en="Stripe — Coming Soon">Stripe — Byento Disponib</button></div>
     <div class="pay-card featured">
-      <div class="pay-card-hdr">
-        <div class="pay-card-label">📱 MonCash</div>
-        <div class="pay-badge" data-kr="Pou Ayiti" data-en="For Haiti">Pou Ayiti</div>
-      </div>
+      <div class="pay-card-hdr"><div class="pay-card-label">📱 MonCash</div><div class="pay-badge" data-kr="Pou Ayiti" data-en="For Haiti">Pou Ayiti</div></div>
       <div id="mc-form-area">
         <div class="mc-steps">
-          <div class="mc-step">
-            <div class="mc-step-n">1</div>
-            <div>
-              <div class="mc-step-lbl" data-kr="Voye Peman an" data-en="Send Payment">Voye Peman an</div>
-              <div style="font-size:13px;font-weight:300;color:var(--muted);" data-kr="Voye 2,500 HTG nan nimewo MonCash sa a:" data-en="Send 2,500 HTG to this MonCash number:">Voye 2,500 HTG nan nimewo MonCash sa a:</div>
-              <div class="mc-number">+509 XX XX XX XX</div>
-              <div class="mc-ref">Kapvoum@AladinFlex</div>
-            </div>
-          </div>
-          <div class="mc-step">
-            <div class="mc-step-n">2</div>
-            <div style="flex:1;">
-              <div class="mc-step-lbl" data-kr="Ranpli Fòm Sa a" data-en="Fill This Form">Ranpli Fòm Sa a</div>
-              <div class="mc-form">
-                <input class="mc-input" id="mc-vin" readonly>
-                <input class="mc-input" id="mc-txn" type="text" data-placeholder-kr="Nimewo Tranzaksyon MonCash *" data-placeholder-en="MonCash Transaction Number *" placeholder="Nimewo Tranzaksyon MonCash *">
-                <input class="mc-input" id="mc-email" type="email" data-placeholder-kr="Imèl ou *" data-placeholder-en="Your Email *" placeholder="Imèl ou *">
-                <input class="mc-input" id="mc-name" type="text" data-placeholder-kr="Non ou (opsyonèl)" data-placeholder-en="Your Name (optional)" placeholder="Non ou (opsyonèl)">
-                <button class="mc-submit" onclick="submitMoncash()" data-kr="VOYE DEMANN NAN →" data-en="SEND REQUEST →">VOYE DEMANN NAN →</button>
-              </div>
-            </div>
-          </div>
+          <div class="mc-step"><div class="mc-step-n">1</div><div><div class="mc-step-lbl" data-kr="Voye Peman an" data-en="Send Payment">Voye Peman an</div><div style="font-size:13px;font-weight:300;color:var(--muted);" data-kr="Voye 2,500 HTG nan nimewo MonCash sa a:" data-en="Send 2,500 HTG to this MonCash number:">Voye 2,500 HTG nan nimewo MonCash sa a:</div><div class="mc-number">+509 XX XX XX XX</div><div class="mc-ref">Kapvoum@AladinFlex</div></div></div>
+          <div class="mc-step"><div class="mc-step-n">2</div><div style="flex:1;"><div class="mc-step-lbl" data-kr="Ranpli Fòm Sa a" data-en="Fill This Form">Ranpli Fòm Sa a</div><div class="mc-form"><input class="mc-input" id="mc-vin" readonly><input class="mc-input" id="mc-txn" type="text" data-placeholder-kr="Nimewo Tranzaksyon MonCash *" data-placeholder-en="MonCash Transaction Number *" placeholder="Nimewo Tranzaksyon MonCash *"><input class="mc-input" id="mc-email" type="email" data-placeholder-kr="Imèl ou *" data-placeholder-en="Your Email *" placeholder="Imèl ou *"><input class="mc-input" id="mc-name" type="text" data-placeholder-kr="Non ou (opsyonèl)" data-placeholder-en="Your Name (optional)" placeholder="Non ou (opsyonèl)"><button class="mc-submit" onclick="submitMoncash()" data-kr="VOYE DEMANN NAN →" data-en="SEND REQUEST →">VOYE DEMANN NAN →</button></div></div></div>
         </div>
       </div>
-      <div class="mc-success" id="mc-success">
-        <div class="mc-success-title">✓ <span data-kr="Demann Resevwa!" data-en="Request Received!">Demann Resevwa!</span></div>
-        <div class="mc-success-text" data-kr="Rapò ou ap voye nan imèl ou nan 2-4 èdtan. Mèsi pou konfyans ou!" data-en="Your report will be sent to your email within 2-4 hours. Thank you for your trust!">Rapò ou ap voye nan imèl ou nan 2-4 èdtan. Mèsi pou konfyans ou!</div>
-        <button class="mc-submit" style="margin-top:16px;" onclick="goToReport()" data-kr="WÈ RAPÒ EGZANP →" data-en="SEE SAMPLE REPORT →">WÈ RAPÒ EGZANP →</button>
-      </div>
+      <div class="mc-success" id="mc-success"><div class="mc-success-title">✓ <span data-kr="Demann Resevwa!" data-en="Request Received!">Demann Resevwa!</span></div><div class="mc-success-text" data-kr="Rapò ou ap voye nan imèl ou nan 2-4 èdtan. Mèsi pou konfyans ou!" data-en="Your report will be sent to your email within 2-4 hours. Thank you for your trust!">Rapò ou ap voye nan imèl ou nan 2-4 èdtan. Mèsi pou konfyans ou!</div><button class="mc-submit" style="margin-top:16px;" onclick="goToReport()" data-kr="WÈ RAPÒ EGZANP →" data-en="SEE SAMPLE REPORT →">WÈ RAPÒ EGZANP →</button></div>
     </div>
-
-    <a href="https://wa.me/15098765432" class="wa-btn" target="_blank">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-      <span data-kr="Kesyon? Kontakte nou sou WhatsApp" data-en="Questions? Contact us on WhatsApp">Kesyon? Kontakte nou sou WhatsApp</span>
-    </a>
+    <a href="https://wa.me/15098765432" class="wa-btn" target="_blank"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg><span data-kr="Kesyon? Kontakte nou sou WhatsApp" data-en="Questions? Contact us on WhatsApp">Kesyon? Kontakte nou sou WhatsApp</span></a>
   </div>
 </div>
 
-<!-- ══════════════ VIEW 4 — REPORT ══════════════ -->
 <div id="view-report" class="view">
   <div class="page-wrap">
-    <div class="report-hdr">
-      <div>
-        <div class="report-title-main" data-kr="Rapò Ofisyèl Kapvoum" data-en="Official Kapvoum Report">Rapò Ofisyèl Kapvoum</div>
-        <div class="report-sub" id="rpt-vehicle">—</div>
-        <div class="report-id-txt" id="rpt-id">—</div>
-      </div>
-      <button class="print-btn" onclick="window.print()" data-kr="📥 Telechaje PDF" data-en="📥 Download PDF">📥 Telechaje PDF</button>
-    </div>
-
-    <div class="status-ban danger" id="rpt-status">
-      <div class="status-icon">⚠️</div>
-      <div class="status-title" id="rpt-status-title"></div>
-    </div>
-
-    <!-- SCORE -->
+    <div class="report-hdr"><div><div class="report-title-main" data-kr="Rapò Ofisyèl Kapvoum" data-en="Official Kapvoum Report">Rapò Ofisyèl Kapvoum</div><div class="report-sub" id="rpt-vehicle">—</div><div class="report-id-txt" id="rpt-id">—</div></div><button class="print-btn" onclick="window.print()" data-kr="📥 Telechaje PDF" data-en="📥 Download PDF">📥 Telechaje PDF</button></div>
+    <div class="status-ban danger" id="rpt-status"><div class="status-icon">⚠️</div><div class="status-title" id="rpt-status-title"></div></div>
     <div class="sec-lbl"><div class="sec-lbl-line"></div><span class="sec-lbl-text">Score Kapvoum</span></div>
-    <div class="score-row">
-      <div class="score-circle" id="rpt-score-circle">
-        <div class="score-num" id="rpt-score-num">—</div>
-      </div>
-      <div>
-        <div class="score-info-label" data-kr="Evalyasyon /10 — Adapte pou Ayiti" data-en="Score /10 — Adapted for Haiti">Evalyasyon /10 — Adapte pou Ayiti</div>
-        <div class="score-verdict-txt" id="rpt-score-verdict"></div>
-        <div class="score-desc-txt" id="rpt-score-desc"></div>
-      </div>
-    </div>
-
-    <!-- FACTS -->
+    <div class="score-row"><div class="score-circle" id="rpt-score-circle"><div class="score-num" id="rpt-score-num">—</div></div><div><div class="score-info-label" data-kr="Evalyasyon /10 — Adapte pou Ayiti" data-en="Score /10 — Adapted for Haiti">Evalyasyon /10 — Adapte pou Ayiti</div><div class="score-verdict-txt" id="rpt-score-verdict"></div><div class="score-desc-txt" id="rpt-score-desc"></div></div></div>
     <div class="sec-lbl"><div class="sec-lbl-line"></div><span class="sec-lbl-text" data-kr="Done Kle" data-en="Key Data">Done Kle</span></div>
     <div class="facts-grid" id="rpt-facts"></div>
-
-    <!-- FLOOD -->
-    <div class="flood-box" id="rpt-flood" style="display:none;">
-      <div class="flood-title" id="rpt-flood-title"></div>
-      <div class="flood-text" id="rpt-flood-text"></div>
-    </div>
-
-    <!-- VERDICT -->
+    <div class="flood-box" id="rpt-flood" style="display:none;"><div class="flood-title" id="rpt-flood-title"></div><div class="flood-text" id="rpt-flood-text"></div></div>
     <div class="sec-lbl"><div class="sec-lbl-line"></div><span class="sec-lbl-text" data-kr="Vèdik Kapvoum" data-en="Kapvoum Verdict">Vèdik Kapvoum</span></div>
-    <div class="verdict-box vb-r" id="rpt-verdict">
-      <div class="verdict-title" id="rpt-verdict-title"></div>
-      <div class="verdict-text" id="rpt-verdict-text"></div>
-    </div>
-
-    <!-- NEGO -->
-    <div class="nego-box">
-      <div class="nego-title">💡 <span data-kr="Konsèy Negosyasyon" data-en="Negotiation Tip">Konsèy Negosyasyon</span></div>
-      <div class="nego-text" id="rpt-nego"></div>
-    </div>
-
-    <!-- TECH IN REPORT -->
+    <div class="verdict-box vb-r" id="rpt-verdict"><div class="verdict-title" id="rpt-verdict-title"></div><div class="verdict-text" id="rpt-verdict-text"></div></div>
+    <div class="nego-box"><div class="nego-title">💡 <span data-kr="Konsèy Negosyasyon" data-en="Negotiation Tip">Konsèy Negosyasyon</span></div><div class="nego-text" id="rpt-nego"></div></div>
     <div class="sec-lbl"><div class="sec-lbl-line"></div><span class="sec-lbl-text" data-kr="Fich Teknik" data-en="Technical Sheet">Fich Teknik</span></div>
     <table class="tech-table" id="rpt-tech"></table>
-
-    <!-- CHECKLIST IN REPORT -->
     <div class="sec-lbl"><div class="sec-lbl-line"></div><span class="sec-lbl-text" data-kr="Lis Verifikasyon" data-en="Checklist">Lis Verifikasyon</span></div>
     <div class="checklist-wrap" id="rpt-ck"></div>
-
     <div class="disclaimer" id="rpt-disclaimer"></div>
-    <div class="report-footer-bar">
-      Kapvoum.com — AladinFlex LLC<br>
-      <span id="rpt-footer-id"></span>
-    </div>
+    <div class="report-footer-bar">Kapvoum.com — AladinFlex LLC<br><span id="rpt-footer-id"></span></div>
   </div>
 </div>
 
 <script>
-// ══ STATE ══
 let LANG = localStorage.getItem('kv_lang') || 'kr';
 let VIN = '';
 let VEHICLE = {};
 let RECALLS = [];
 let CHECKS = new Array(8).fill(false);
 
-// ══ TRANSLATIONS ══
 const T = {
   kr:{
     vin_short:"VIN dwe gen 17 karaktè egzakteman.",
@@ -742,16 +500,7 @@ const T = {
     tech_note:"Done sa yo se yon estimasyon jeneral. Toujou verifye manyèl machin ou.",
     oil:"Lwil Motè", battery:"Batri (Gwoup)", ac:"Gaz AC", tf:"Presyon Devan", tr:"Presyon Dèyè",
     make:"Mak", model:"Modèl", year:"Ane", engine:"Motè", trans:"Transmisyon", fuel:"Kabiran", doors:"Pòt", country:"Fabrike nan",
-    checks:[
-      "Anba machin — chèche rouiy ak tras dlo (flood)",
-      "Mofle — pa dwe gen bri etranj",
-      "Kawotchou — minimòm 40% lavi",
-      "Fren — teste nan 60 km/h",
-      "Klimatizasyon — mache pandan 10 minit",
-      "Tableau de bord — okenn wòch pa dwe limen",
-      "Papye machin — tit dwe pwòp (Clean Title)",
-      "Istwa VIN — verifye ak Kapvoum ✓"
-    ],
+    checks:["Anba machin — chèche rouiy ak tras dlo (flood)","Mofle — pa dwe gen bri etranj","Kawotchou — minimòm 40% lavi","Fren — teste nan 60 km/h","Klimatizasyon — mache pandan 10 minit","Tableau de bord — okenn wòch pa dwe limen","Papye machin — tit dwe pwòp (Clean Title)","Istwa VIN — verifye ak Kapvoum ✓"],
     ck_prog:n=>`${n}/8 pwen verifye`,
     status_bad:"⚠️ ATANSYON — Machin Sa Gen Plizyè Pwoblèm",
     status_good:"✓ Machin Sa nan Bon Kondisyon Jeneral",
@@ -786,16 +535,7 @@ const T = {
     tech_note:"This data is a general estimate. Always verify with the vehicle's owner manual.",
     oil:"Engine Oil", battery:"Battery (Group)", ac:"AC Refrigerant", tf:"Front Tire Pressure", tr:"Rear Tire Pressure",
     make:"Make", model:"Model", year:"Year", engine:"Engine", trans:"Transmission", fuel:"Fuel Type", doors:"Doors", country:"Made In",
-    checks:[
-      "Under vehicle — look for rust and water traces (flood)",
-      "Exhaust — no abnormal noises",
-      "Tires — minimum 40% tread life",
-      "Brakes — test at 60 km/h",
-      "Air conditioning — run for 10 minutes",
-      "Dashboard — no warning lights on",
-      "Documents — must have Clean Title",
-      "VIN history — verified with Kapvoum ✓"
-    ],
+    checks:["Under vehicle — look for rust and water traces (flood)","Exhaust — no abnormal noises","Tires — minimum 40% tread life","Brakes — test at 60 km/h","Air conditioning — run for 10 minutes","Dashboard — no warning lights on","Documents — must have Clean Title","VIN history — verified with Kapvoum ✓"],
     ck_prog:n=>`${n}/8 points verified`,
     status_bad:"⚠️ ATTENTION — This Vehicle Has Multiple Issues",
     status_good:"✓ This Vehicle is in Good General Condition",
@@ -825,19 +565,13 @@ const T = {
 };
 function t(k,...a){const v=T[LANG][k];return typeof v==='function'?v(...a):v||k;}
 
-// ══ LANGUAGE ══
 function setLang(l){
   LANG=l;
   localStorage.setItem('kv_lang',l);
   document.getElementById('btn-kr').classList.toggle('active',l==='kr');
   document.getElementById('btn-en').classList.toggle('active',l==='en');
-  document.querySelectorAll('[data-kr]').forEach(el=>{
-    const v=el.getAttribute('data-'+l);
-    if(v!==null)el.textContent=v;
-  });
-  document.querySelectorAll('[data-placeholder-kr]').forEach(el=>{
-    el.placeholder=el.getAttribute('data-placeholder-'+l)||'';
-  });
+  document.querySelectorAll('[data-kr]').forEach(el=>{const v=el.getAttribute('data-'+l);if(v!==null)el.textContent=v;});
+  document.querySelectorAll('[data-placeholder-kr]').forEach(el=>{el.placeholder=el.getAttribute('data-placeholder-'+l)||'';});
   document.getElementById('nav-cta-btn').textContent=l==='kr'?'Verifye VIN':'Verify VIN';
   if(document.getElementById('r-content').style.display!=='none'){
     renderChecklist('ck-wrap');
@@ -847,7 +581,6 @@ function setLang(l){
   }
 }
 
-// ══ VIN INPUT ══
 function onVinInput(el){
   el.value=el.value.toUpperCase().replace(/[^A-HJ-NPR-Z0-9]/g,'');
   const box=document.getElementById('vin-box');
@@ -858,28 +591,13 @@ function onVinInput(el){
 function toggleHint(){document.getElementById('vin-hint').classList.toggle('show');}
 function scrollToVin(){document.getElementById('vin-input').focus();document.getElementById('vin-input').scrollIntoView({behavior:'smooth'});}
 
-// ══ TECH SPECS ══
 function getSpecs(make,year){
   const m=(make||'').toLowerCase();const y=parseInt(year)||2000;
-  if(m.includes('toyota')){
-    if(y<=2010)return{oil:'5W-30',bat:'24F',ac:'R134a',tf:'32 PSI',tr:'32 PSI'};
-    if(y<=2017)return{oil:'0W-20',bat:'35',ac:'R134a',tf:'33 PSI',tr:'33 PSI'};
-    return{oil:'0W-16',bat:'35',ac:'R-1234yf',tf:'35 PSI',tr:'35 PSI'};
-  }
-  if(m.includes('honda')){
-    if(y<=2012)return{oil:'5W-20',bat:'51R',ac:'R134a',tf:'32 PSI',tr:'30 PSI'};
-    if(y<=2017)return{oil:'0W-20',bat:'51R',ac:'R134a',tf:'33 PSI',tr:'32 PSI'};
-    return{oil:'0W-20',bat:'51R',ac:'R-1234yf',tf:'35 PSI',tr:'33 PSI'};
-  }
-  if(m.includes('nissan')){
-    if(y<=2012)return{oil:'5W-30',bat:'35',ac:'R134a',tf:'33 PSI',tr:'33 PSI'};
-    return{oil:'0W-20',bat:'35',ac:'R134a',tf:'35 PSI',tr:'33 PSI'};
-  }
+  if(m.includes('toyota')){if(y<=2010)return{oil:'5W-30',bat:'24F',ac:'R134a',tf:'32 PSI',tr:'32 PSI'};if(y<=2017)return{oil:'0W-20',bat:'35',ac:'R134a',tf:'33 PSI',tr:'33 PSI'};return{oil:'0W-16',bat:'35',ac:'R-1234yf',tf:'35 PSI',tr:'35 PSI'};}
+  if(m.includes('honda')){if(y<=2012)return{oil:'5W-20',bat:'51R',ac:'R134a',tf:'32 PSI',tr:'30 PSI'};if(y<=2017)return{oil:'0W-20',bat:'51R',ac:'R134a',tf:'33 PSI',tr:'32 PSI'};return{oil:'0W-20',bat:'51R',ac:'R-1234yf',tf:'35 PSI',tr:'33 PSI'};}
+  if(m.includes('nissan')){if(y<=2012)return{oil:'5W-30',bat:'35',ac:'R134a',tf:'33 PSI',tr:'33 PSI'};return{oil:'0W-20',bat:'35',ac:'R134a',tf:'35 PSI',tr:'33 PSI'};}
   if(m.includes('mitsubishi'))return{oil:'5W-30',bat:'35',ac:'R134a',tf:'33 PSI',tr:'33 PSI'};
-  if(m.includes('mazda')){
-    if(y<=2013)return{oil:'5W-30',bat:'35',ac:'R134a',tf:'32 PSI',tr:'32 PSI'};
-    return{oil:'0W-20',bat:'35',ac:'R134a',tf:'35 PSI',tr:'33 PSI'};
-  }
+  if(m.includes('mazda')){if(y<=2013)return{oil:'5W-30',bat:'35',ac:'R134a',tf:'32 PSI',tr:'32 PSI'};return{oil:'0W-20',bat:'35',ac:'R134a',tf:'35 PSI',tr:'33 PSI'};}
   if(m.includes('subaru'))return{oil:'0W-20',bat:'25',ac:'R134a',tf:'33 PSI',tr:'33 PSI'};
   const c=LANG==='kr'?'Konsilte manyèl':'Consult manual';
   return{oil:c,bat:c,ac:'R134a',tf:'—',tr:'—'};
@@ -891,15 +609,10 @@ function renderTechTable(id,make,year){
   document.getElementById(id).innerHTML=rows.map(([l,v])=>`<tr><td>${l}</td><td>${v}</td></tr>`).join('');
 }
 
-// ══ CHECKLIST ══
 function renderChecklist(wid){
   const wrap=document.getElementById(wid);if(!wrap)return;
   const items=t('checks');
-  wrap.innerHTML=items.map((txt,i)=>`
-    <div class="ck-item" onclick="toggleCheck(${i},'${wid}')">
-      <div class="ck-box${CHECKS[i]?' on':''}" id="ckb-${wid}-${i}">${CHECKS[i]?'✓':''}</div>
-      <div class="ck-text${CHECKS[i]?' done':''}" id="ckt-${wid}-${i}">${txt}</div>
-    </div>`).join('');
+  wrap.innerHTML=items.map((txt,i)=>`<div class="ck-item" onclick="toggleCheck(${i},'${wid}')"><div class="ck-box${CHECKS[i]?' on':''}" id="ckb-${wid}-${i}">${CHECKS[i]?'✓':''}</div><div class="ck-text${CHECKS[i]?' done':''}" id="ckt-${wid}-${i}">${txt}</div></div>`).join('');
   updateProg();
 }
 
@@ -920,7 +633,6 @@ function updateProg(){
   if(fill){fill.style.width=(n/8*100)+'%';fill.style.background=n===8?'var(--green)':'var(--gold)';}
 }
 
-// ══ SEARCH ══
 async function doSearch(){
   const vin=document.getElementById('vin-input').value.trim();
   const err=document.getElementById('vin-err');
@@ -933,7 +645,6 @@ async function doSearch(){
   document.getElementById('r-error').style.display='none';
   document.getElementById('search-btn').disabled=true;
   document.getElementById('spinner').classList.add('show');
-
   try{
     const res=await fetch(`https://vpic.nhtsa.dot.gov/api/vehicles/decodevinvalues/${vin}?format=json`).then(r=>r.json());
     const r=res.Results&&res.Results[0];
@@ -959,17 +670,14 @@ function renderResults(){
   const name=`${VEHICLE.year} ${VEHICLE.make} ${VEHICLE.model}`;
   document.getElementById('vb-name').textContent=name;
   document.getElementById('vb-vin').textContent=`VIN · ${VIN}`;
-
   const rows=[[t('make'),VEHICLE.make],[t('model'),VEHICLE.model],[t('year'),VEHICLE.year],[t('engine'),VEHICLE.engine],[t('trans'),VEHICLE.trans],[t('fuel'),VEHICLE.fuel],[t('doors'),VEHICLE.doors],[t('country'),VEHICLE.country]];
   document.getElementById('info-grid').innerHTML=rows.map(([l,v])=>`<div class="info-cell"><div class="info-label">${l}</div><div class="info-val">${v}</div></div>`).join('');
-
   const rSec=document.getElementById('recalls-sec');
   if(RECALLS.length>0){
     rSec.innerHTML=`<div class="recall-banner rb-warn">${t('recalls_found',RECALLS.length)}</div>`+RECALLS.map(r=>`<div class="recall-card"><div class="recall-comp">${r.Component||'—'}</div><div class="recall-sum">${(r.Summary||'').substring(0,160)}${r.Summary&&r.Summary.length>160?'...':''}</div></div>`).join('');
   }else{
     rSec.innerHTML=`<div class="recall-banner rb-ok">${t('no_recalls')}</div>`;
   }
-
   renderTechTable('tech-tbl',VEHICLE.make,VEHICLE.year);
   document.getElementById('tech-note-txt').textContent=t('tech_note');
   CHECKS=new Array(8).fill(false);
@@ -978,7 +686,6 @@ function renderResults(){
   window.scrollTo({top:0,behavior:'smooth'});
 }
 
-// ══ PAYMENT ══
 function goToPayment(){
   const name=`${VEHICLE.year} ${VEHICLE.make} ${VEHICLE.model}`;
   document.getElementById('pay-vname').textContent=name;
@@ -999,7 +706,6 @@ function submitMoncash(){
 
 function goToReport(){renderReport();showView('view-report');window.scrollTo({top:0,behavior:'smooth'});}
 
-// ══ REPORT ══
 const MOCK={titleStatus:"Salvage",accidentCount:2,ownerCount:3,lastOdometer:124580,floodDamage:true,theft:false,lastState:"Texas",lastRegistrationYear:2021};
 
 function calcScore(){
@@ -1018,14 +724,12 @@ function renderReport(){
   document.getElementById('rpt-vehicle').textContent=`${name} — VIN: ${VIN}`;
   document.getElementById('rpt-id').textContent=`${id} · ${today}`;
   document.getElementById('rpt-footer-id').textContent=id;
-
   const score=calcScore();
   const sEl=document.getElementById('rpt-score-num');
   const cEl=document.getElementById('rpt-score-circle');
   const vEl=document.getElementById('rpt-score-verdict');
   const dEl=document.getElementById('rpt-score-desc');
   sEl.textContent=score.toFixed(1);
-
   let col,sk,dk;
   if(score<5){col='var(--red)';sk='score_bad';dk='sdesc_bad';}
   else if(score<7){col='var(--orange)';sk='score_mid';dk='sdesc_mid';}
@@ -1033,30 +737,13 @@ function renderReport(){
   sEl.style.color=col;cEl.style.borderColor=col;
   vEl.textContent=t(sk);vEl.style.color=col;
   dEl.textContent=t(dk);
-
   const risky=score<6;
   const sb=document.getElementById('rpt-status');
   sb.className='status-ban '+(risky?'danger':'good');
   document.getElementById('rpt-status-title').textContent=risky?t('status_bad'):t('status_good');
-
-  const facts=[
-    [t('title_lbl'),MOCK.titleStatus,MOCK.titleStatus==='Salvage'?'fv-r':'fv-g'],
-    [t('acc_lbl'),`${MOCK.accidentCount}`,MOCK.accidentCount>=2?'fv-r':MOCK.accidentCount===1?'fv-o':'fv-g'],
-    [t('own_lbl'),`${MOCK.ownerCount}`,MOCK.ownerCount>=3?'fv-o':'fv-g'],
-    [t('odo_lbl'),`${MOCK.lastOdometer.toLocaleString()} mi`,''],
-    [t('flood_lbl'),MOCK.floodDamage?`${t('yes')} (Texas 2021)`:t('no'),MOCK.floodDamage?'fv-r':'fv-g'],
-    [t('theft_lbl'),MOCK.theft?t('yes'):t('no'),MOCK.theft?'fv-r':'fv-g'],
-    [t('state_lbl'),MOCK.lastState,''],
-    [t('yr_lbl'),VEHICLE.year||'—',''],
-  ];
+  const facts=[[t('title_lbl'),MOCK.titleStatus,MOCK.titleStatus==='Salvage'?'fv-r':'fv-g'],[t('acc_lbl'),`${MOCK.accidentCount}`,MOCK.accidentCount>=2?'fv-r':MOCK.accidentCount===1?'fv-o':'fv-g'],[t('own_lbl'),`${MOCK.ownerCount}`,MOCK.ownerCount>=3?'fv-o':'fv-g'],[t('odo_lbl'),`${MOCK.lastOdometer.toLocaleString()} mi`,''],[t('flood_lbl'),MOCK.floodDamage?`${t('yes')} (Texas 2021)`:t('no'),MOCK.floodDamage?'fv-r':'fv-g'],[t('theft_lbl'),MOCK.theft?t('yes'):t('no'),MOCK.theft?'fv-r':'fv-g'],[t('state_lbl'),MOCK.lastState,''],[t('yr_lbl'),VEHICLE.year||'—','']];
   document.getElementById('rpt-facts').innerHTML=facts.map(([l,v,c])=>`<div class="fact-cell"><div class="fact-label">${l}</div><div class="fact-val ${c}">${v}</div></div>`).join('');
-
-  if(MOCK.floodDamage){
-    document.getElementById('rpt-flood').style.display='block';
-    document.getElementById('rpt-flood-title').textContent=t('flood_title');
-    document.getElementById('rpt-flood-text').textContent=t('flood_txt',MOCK.lastState,MOCK.lastRegistrationYear);
-  }else{document.getElementById('rpt-flood').style.display='none';}
-
+  if(MOCK.floodDamage){document.getElementById('rpt-flood').style.display='block';document.getElementById('rpt-flood-title').textContent=t('flood_title');document.getElementById('rpt-flood-text').textContent=t('flood_txt',MOCK.lastState,MOCK.lastRegistrationYear);}else{document.getElementById('rpt-flood').style.display='none';}
   const vb=document.getElementById('rpt-verdict');
   let vcls,vtk,vdk;
   if(score<5){vcls='vb-r';vtk='verdict_bad_t';vdk='verdict_bad_d';}
@@ -1065,18 +752,15 @@ function renderReport(){
   vb.className=`verdict-box ${vcls}`;
   document.getElementById('rpt-verdict-title').textContent=t(vtk);
   document.getElementById('rpt-verdict-text').textContent=t(vdk);
-
   let nk;
   if(score<5)nk='nego_bad';else if(score<7)nk='nego_mid';else nk='nego_good';
   document.getElementById('rpt-nego').textContent=t(nk);
-
   renderTechTable('rpt-tech',VEHICLE.make,VEHICLE.year);
   renderChecklist('rpt-ck');
   document.getElementById('rpt-disclaimer').textContent=t('disclaimer');
   setLang(LANG);
 }
 
-// ══ NAVIGATION ══
 function showView(id){
   document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
   document.getElementById(id).classList.add('active');
@@ -1084,13 +768,9 @@ function showView(id){
 }
 function goHome(){showView('view-home');}
 
-// ══ SCROLL REVEAL ══
-const obs=new IntersectionObserver(entries=>{
-  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});
-},{threshold:.08});
+const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});},{threshold:.08});
 document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
 
-// ══ INIT ══
 window.onload=()=>{
   setLang(LANG);
   const d=new Date();
