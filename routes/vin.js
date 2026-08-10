@@ -4,9 +4,20 @@
  */
 
 const express = require('express');
+const rateLimit = require('express-rate-limit');
 const router = express.Router();
 const vinProvider = require('../providers/vinProvider');
 const { validateVin } = require('../utils/validate');
+
+// Rate limiting — max 5 requêtes/minute/IP. Scope volontairement limité à
+// ce routeur (check-vin, full-report) : ne doit pas affecter /api/health
+// ni /api/payment/* (montés séparément dans server.js).
+const vinLimiter = rateLimit({
+  windowMs: 60 * 1000,
+  max: 5,
+  message: { error: 'Trop de requêtes. Veuillez patienter une minute.' },
+});
+router.use(vinLimiter);
 
 /**
  * POST /api/check-vin
@@ -56,7 +67,8 @@ router.post('/full-report', async (req, res) => {
     res.json(report);
   } catch (err) {
     if (err.code === 'NO_PAID_PROVIDER' || err.code === 'PROVIDER_NOT_CONFIGURED') {
-      return res.status(501).json({ error: err.message, code: err.code });
+      console.error('Erreur /full-report:', err.message);
+      return res.status(501).json({ error: 'Rapport complet non disponible — fournisseur non configuré.', code: err.code });
     }
     if (err.code === 'INVALID_VIN') {
       return res.status(404).json({ error: 'VIN non reconnu par NHTSA' });

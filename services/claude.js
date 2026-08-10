@@ -12,8 +12,6 @@
  * éléments ont été écartés après revue critique du positionnement.
  */
 
-const fetch = require('node-fetch');
-
 const SYSTEM_PROMPT = `Tu es le conseiller automobile de Kapvoum pour la diaspora haïtienne.
 Tu reçois un rapport véhicule normalisé, un KapScore (déjà calculé), et un
 Indice Haïti (déjà calculé). Génère UNIQUEMENT un JSON valide, sans markdown,

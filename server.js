@@ -10,7 +10,6 @@ require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const path = require('path');
-const rateLimit = require('express-rate-limit');
 
 const vinRoutes = require('./routes/vin');
 const paymentRoutes = require('./routes/payment');
@@ -23,16 +22,11 @@ app.use(cors());
 app.use(express.json());
 app.use(express.static(path.join(__dirname))); // sert index.html tel quel, inchangé
 
-// Rate limiting sur les routes VIN — max 5 requêtes/minute/IP
-// (CLAUDE.md section 10, Priorité 2 — protège le coût API fournisseur)
-const vinLimiter = rateLimit({
-  windowMs: 60 * 1000,
-  max: 5,
-  message: { error: 'Twòp demann. Tanpri tann yon minit.' },
-});
-
 // ── Routes ──
-app.use('/api', vinLimiter, vinRoutes);
+// Le rate limiting VIN est appliqué dans routes/vin.js (scope volontairement
+// limité à /api/check-vin et /api/full-report — ne doit pas affecter
+// /api/health ni /api/payment/*).
+app.use('/api', vinRoutes);
 app.use('/api/payment', paymentRoutes);
 
 app.get('/api/health', (req, res) => {
