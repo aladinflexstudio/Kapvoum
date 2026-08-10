@@ -5,7 +5,6 @@
  * c'est la seule source garantie sans coût.
  */
 
-const fetch = require('node-fetch');
 
 const DECODE_URL = 'https://vpic.nhtsa.dot.gov/api/vehicles/decodevinvalues';
 const RECALLS_URL = 'https://api.nhtsa.gov/recalls/recallsByVehicle';
@@ -33,7 +32,7 @@ async function decode(vin) {
     model: r.Model || null,
     year: r.ModelYear || null,
     trim: r.Trim || null,
-    engine: [r.DisplacementL ? `${r.DisplacementL}L` : '', r.EngineCylinders ? `${r.EngineCylinders} cyl` : '']
+    engine: [r.DisplacementL ? `${parseFloat(r.DisplacementL).toFixed(1)}L` : '', r.EngineCylinders ? `${r.EngineCylinders} cyl` : '']
       .filter(Boolean).join(' ') || null,
     displacementL: r.DisplacementL ? parseFloat(r.DisplacementL) : null,
     transmission: r.TransmissionStyle || null,

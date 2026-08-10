@@ -7,7 +7,6 @@
  * Priorité 0 (CLAUDE.md section 10).
  */
 
-const fetch = require('node-fetch');
 
 async function getHistory(vin) {
   if (!process.env.VEHICLE_DATABASES_API_KEY) {
