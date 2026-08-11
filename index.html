@@ -214,6 +214,11 @@ nav{position:sticky;top:0;z-index:200;display:flex;align-items:center;justify-co
 .pay-badge{font-size:10px;font-weight:700;letter-spacing:0.06em;padding:4px 10px;border-radius:var(--radius-sm);background:var(--bg-sunken);color:var(--text-secondary);}
 .pending-note{font-size:13px;font-weight:400;color:var(--text-secondary);padding:12px;background:var(--bg-sunken);border-radius:var(--radius-sm);margin-bottom:14px;}
 .pending-btn{width:100%;padding:14px;background:var(--border-strong);color:var(--white);border:none;border-radius:var(--radius-pill);font-family:var(--font-display);font-size:17px;letter-spacing:0.02em;cursor:not-allowed;}
+.pay-btn-active{width:100%;padding:14px;background:var(--brand-primary);color:var(--white);border:none;border-radius:var(--radius-pill);font-family:var(--font-display);font-size:17px;letter-spacing:0.02em;cursor:pointer;transition:background .15s;}
+.pay-btn-active:hover{background:var(--brand-primary-hover);}
+.pay-btn-active:disabled{background:var(--border-strong);cursor:not-allowed;}
+.pay-error-msg{font-size:13px;color:var(--red-700);margin-top:10px;display:none;}
+.pay-error-msg.show{display:block;}
 
 /* ═══ VIEW 4 — REPORT ═══ */
 .report-hdr{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:28px;flex-wrap:wrap;gap:14px;}
@@ -450,8 +455,8 @@ nav{position:sticky;top:0;z-index:200;display:flex;align-items:center;justify-co
         <div class="pay-card-label">💳 <span data-kr="Kat Kredi/Debi" data-en="Credit/Debit Card">Kat Kredi/Debi</span></div>
         <div class="pay-badge">USA · Canada · Europe</div>
       </div>
-      <div class="pending-note" data-kr="Peman ap konekte talè. Sistèm nan poko pare pou peman reyèl." data-en="Payment coming soon. The system is not yet ready for real payments.">Peman ap konekte talè. Sistèm nan poko pare pou peman reyèl.</div>
-      <button class="pending-btn" disabled data-kr="Byento Disponib" data-en="Coming Soon">Byento Disponib</button>
+      <button class="pay-btn-active" id="stripe-pay-btn" onclick="payWithStripe()" data-kr="Peye Kounye A — $14.99" data-en="Pay Now — $14.99">Peye Kounye A — $14.99</button>
+      <div class="pay-error-msg" id="stripe-pay-err"></div>
     </div>
 
     <div class="pay-card">
@@ -701,6 +706,52 @@ function goToPayment(){
   window.scrollTo({top:0,behavior:'smooth'});
 }
 
+// ══ PAIEMENT — crée une Stripe Checkout Session et redirige ══
+async function payWithStripe(){
+  const btn=document.getElementById('stripe-pay-btn');
+  const err=document.getElementById('stripe-pay-err');
+  err.textContent='';err.className='pay-error-msg';
+  btn.disabled=true;
+  try{
+    const res=await fetch('/api/payment/stripe',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({vin:VIN})
+    });
+    const data=await res.json();
+    if(!res.ok||!data.url){
+      throw new Error(data.error||(LANG==='kr'?'Erè pandan koneksyon ak Stripe.':'Error connecting to Stripe.'));
+    }
+    window.location.href=data.url;
+  }catch(e){
+    err.textContent=e.message;
+    err.className='pay-error-msg show';
+    btn.disabled=false;
+  }
+}
+
+// ══ RETOUR STRIPE — repopule VEHICLE (perdu à la redirection) puis affiche le rapport ══
+async function resumeAfterPayment(vin){
+  VIN=vin;
+  try{
+    const res=await fetch('/api/check-vin',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({vin})
+    });
+    const data=await res.json();
+    if(res.ok){
+      VEHICLE={
+        make:data.decoded.make||'—', model:data.decoded.model||'—', year:data.decoded.year||'—',
+        engine:data.decoded.engine||'—', trans:data.decoded.transmission||'—',
+        fuel:data.decoded.fuelType||'—', doors:data.decoded.doors||'—', country:data.decoded.plantCountry||'—',
+        displacementL:data.decoded.displacementL
+      };
+    }
+  }catch(e){}
+  goToReport();
+}
+
 // ══ RAPPORT COMPLET — appelle /api/full-report, gère le 501 honnêtement ══
 async function goToReport(){
   showView('view-report');
@@ -780,7 +831,15 @@ function showView(id){
 }
 function goHome(){showView('view-home');}
 
-window.onload=()=>{ setLang(LANG); };
+window.onload=()=>{
+  setLang(LANG);
+  const params=new URLSearchParams(window.location.search);
+  if(params.get('payment')==='success'&&params.get('vin')){
+    const vin=params.get('vin');
+    history.replaceState(null,'',window.location.pathname);
+    resumeAfterPayment(vin);
+  }
+};
 </script>
 </body>
 </html>
